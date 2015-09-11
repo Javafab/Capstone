@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{% block header %}Login{% endblock %}
+{% block user %}
+
+{% endblock %}
+
+{% block content %}
+    <form method="post" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="login">
+</form>
+
+    </hr>
+<div>
+    <a id="password" href="">Forgot Password?</a>&nbsp;&nbsp;
+    <a id="newuser" href="{% url 'create_user' %}">New User?</a>
+</div>
+
+{% endblock %}
+
+{% block disclaimer %}
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at magna eros. Fusce nisi sem, aliquet eget pharetra quis, vulputate eu est. Ut in orci quam. Phasellus vel purus convallis, condimentum magna sed, aliquam diam. Aliquam quis quam id sapien eleifend finibus id id magna. Morbi rhoncus consequat justo, quis bibendum felis porta ac. Sed nibh orci, blandit ut viverra vel, blandit quis risus. Duis vestibulum quam at sollicitudin pellentesque.
+
+Nullam in eros et justo auctor commodo. Donec tempus diam lorem, ac bibendum lorem luctus et. Fusce vulputate turpis in dui venenatis ornare quis a mi. Donec euismod, arcu non euismod ultrices, tellus nisl pretium eros, nec finibus arcu felis sed magna. Vivamus tempor porttitor lorem. Maecenas non molestie nibh. Fusce cursus suscipit magna quis faucibus.
+
+Vivamus venenatis, nisl ac dapibus sodales, mi mi aliquet nibh, vel placerat dui nisl et justo. Cras tristique quis lacus ultrices iaculis. Proin ullamcorper lacus non tellus scelerisque fringilla. Nullam a velit risus. Cras interdum erat dolor, a viverra nulla finibus ultrices. Aenean imperdiet magna quis vestibulum dictum. Maecenas ut porta quam, et convallis sem. Integer id mollis risus, ut laoreet augue. Vestibulum eu placerat leo. Morbi euismod elit non lorem fermentum faucibus. Donec vestibulum massa justo, at dignissim eros consequat eu.
+
+Integer efficitur, metus ut ornare tempus, sem nisi lobortis velit, sit amet pharetra ante tellus sed urna. Fusce at congue turpis. Phasellus dapibus aliquet arcu, at sollicitudin eros lacinia id. Cras mollis pretium augue, non vulputate augue pharetra non. Suspendisse efficitur risus luctus suscipit lobortis. Nulla facilisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse potenti. Donec maximus ac magna sit amet pharetra. Integer dignissim nec tellus et sagittis. Mauris vitae hendrerit dolor, in elementum felis. Nullam non fermentum felis, non accumsan metus. Donec ut rutrum lorem. Etiam quis imperdiet quam. Nulla lobortis diam rhoncus sodales cursus. Pellentesque euismod est nec ligula placerat pretium.
+
+Vestibulum interdum lectus in ligula pretium, a porta orci tincidunt. Nulla sit amet risus dapibus, luctus est in, tristique elit. Duis iaculis enim quis turpis mollis fermentum. Aenean dignissim sed justo at finibus. Quisque bibendum porttitor rutrum. Fusce pretium interdum nisl, vel hendrerit erat gravida non. Vivamus sollicitudin augue leo, feugiat molestie dui lobortis id. Nunc nisl enim, tempus in scelerisque sit amet, mollis at neque. Duis laoreet tincidunt diam nec ultricies. Curabitur elit elit, feugiat finibus cursus vel, euismod sed ipsum. Maecenas nisl lorem, consequat eu lacinia vel, ullamcorper et ligula. Mauris euismod faucibus arcu, ut interdum turpis semper in. Nam at nisi molestie, dictum enim et, tincidunt purus.
+</p>
+{% endblock %}
+
+{% block navbar %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+Reconcile Time Card
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+<div>{{ form.type }}</div>
+<input type="submit" value="Submit">
+</form>
+{% endblock %}

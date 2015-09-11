@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+Profile Page
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div id="first_name">{{ user.first_name }}</div>
+    <div id="last_name">{{ user.last_name }}</div>
+    <div id="username">{{ user.username }}</div>
+    <div><p><img src="/media/{{ image.photo }}"></p></div>
+</form>
+{% endblock %}

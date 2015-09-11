@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Logged Out{% endblock %}
+{% block user %}
+    <div class="header">
+        <a id="newuser" href="{% url 'login' %}">Log back in</a>
+    </div>
+{% endblock %}
+
+{% block header %}You've been logged out!{% endblock %}
+
+{% block content %}Haha this could work out well!{% endblock %}
+
+{% block navbar %}{% endblock %}

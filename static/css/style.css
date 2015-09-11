@@ -1,0 +1,83 @@
+body {
+    position: relative;
+    background-color: darkgray;
+}
+
+a {
+    color: dodgerblue;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+header {
+    background-color: darkred;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 30px;
+    color: black;
+}
+
+.content {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.helptext {
+    color: #000;
+    display: block;
+}
+
+#id_email {
+    margin-right: 25px;
+}
+
+#disclaimer {
+    color: #000;
+    padding-top: 100px;
+}
+
+#create  {
+    margin-top: 20px;
+    color: #333;
+    font-weight: 100;
+    margin-right: 100px;
+}
+
+#cancel  {
+    display: inline-block;
+    color: #333;
+    font-weight: 100;
+}
+
+.moveme {
+    display: inline-block;
+    position: absolute;
+    right: 40%;
+    bottom: 0%;
+}
+
+.header {
+    font-size: 20px;
+    float: right;
+    margin-right: 10px;
+    color: darkgray;
+}
+
+img {
+    margin-top: 100px;
+    width: 400px;
+    -ms-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+}
+
+#first_name, #last_name {
+    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+}
+
+#username {
+    font-style: italic;
+    font-size: 20px;
+}

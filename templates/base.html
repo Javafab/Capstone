@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+</head>
+{% block user %}
+<div class="header">
+    <div class="table-responsive">
+
+    </div>
+{#    <table class="table-responsive">#}
+{#        <tr>#}
+{#            <td>#}
+{#               Hi, {{ user.first_name }}#}
+{#            </td>#}
+{#        </tr>#}
+{#        <tr>#}
+            <td>
+            <a href="{% url 'logout' %}"> Logout</a>
+        </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
+<header><strong>{% block header %}Header goes here...{% endblock %}</strong></header>
+<body>
+<div class="content col-md-offset-4 col-md-4">
+    {% block content %}Content goes here...{% endblock %}
+</div>
+<div class="col-md-offset-2 col-md-8" id="disclaimer">{% block disclaimer %}{% endblock %}</div>
+{% block navbar %}
+<div id="wrapper" class="active">
+
+      <!-- Sidebar -->
+            <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+      <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+      </ul>
+        <ul class="sidebar-nav" id="sidebar">
+          <li><a href="{% url 'user_profile' user.id %}">Profile<span class="sub_icon glyphicon glyphicon-user" ></span></a></li>
+          <li><a href="{% url 'record_time' %}">Record Time<span class="sub_icon glyphicon glyphicon-time"></span></a></li>
+          <li><a>Trouble Tickets<span class="sub_icon glyphicon glyphicon-exclamation-sign"></span></a></li>
+        </ul>
+      </div>
+
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+              <div class="col-md-12">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+{% endblock %}
+
+</body>
+</html>

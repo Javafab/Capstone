@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block header %}
+New User Form
+{% endblock %}
+{% block user %}
+
+{% endblock %}
+
+{% block content %}
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table-responsive profile" border="1" style="width: 100%">
+        {{ form.non_field_errors }}
+        <tr id="info-header">
+            <td colspan="2">Email Address:</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                {{ form.email.errors }}
+                {{ form.email }}
+            </td>
+        </tr>
+        <tr id="info-header">
+            <td>First Name:</td>
+            <td>Last Name:</td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.first_name.errors }}
+                {{ form.first_name }}
+            </td>
+            <td>
+                {{ form.last_name.errors }}
+                {{ form.last_name }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">Username:</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                {{ form.username.errors }}
+                {{ form.username }}
+            </td>
+        </tr>
+        <tr id="info-header">
+            <td>Password:</td>
+            <td>Confirm Password:</td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.password1.errors }}
+                {{ form.password1 }}
+            </td>
+            <td>
+                {{ form.password2.errors }}
+                {{ form.password2 }}
+            </td>
+        </tr>
+        <tr id="info-header">
+            <td colspan="2">Job Title:</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ form.job_title }}</td>
+        </tr>
+        <tr>
+            <td><em>(*Optional)</em><strong>Profile Image:</strong></td>
+            <td colspan="2"> {{ form.photo }}</td>
+        </tr>
+    </table>
+    <table class="table-responsive profile" style="width: 100%">
+        <tr>
+            <td>
+                {{ form.terms_and_conditions.error_messages }}
+            I agree:
+            </td>
+            <td>{{ form.terms_and_conditions }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">By "checking" the box above, you are agreeing to our terms and conditions for using this software.</td>
+        </tr>
+        <tr>
+            <td><input id="create" type="submit" value="Create"></td>
+        </tr>
+    </table>
+</form>
+    <div class="moveme"><a href="{% url 'login' %}"><button id="cancel">Cancel</button></a></div>
+{% endblock %}
+{% block navbar %}
+
+{% endblock %}
