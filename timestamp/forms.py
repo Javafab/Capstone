@@ -41,13 +41,3 @@ class UserForm(UserCreationForm):
         new_user.set_password(confirmed_pass)
         new_user.save()
         return new_user
-
-
-class RecordTimeForm(forms.ModelForm):
-    class Meta:
-        model = RecordTime
-        fields = ['type']
-
-    def __init__(self, *args, **kwargs):
-        profile_id = kwargs.pop('profile_id', '')
-        super(RecordTimeForm, self).__init__(*args, **kwargs)

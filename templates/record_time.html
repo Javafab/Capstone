@@ -5,9 +5,37 @@ Reconcile Time Card
 {% endblock %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-<div>{{ form.type }}</div>
-<input type="submit" value="Submit">
-</form>
+    <div class="container time_display" id="inner">
+    <p><strong>Recorded Time Stamps</strong></p>
+    </div>
+    <button id="changecolor" class="recordtime" >Record Time</button>
+
+    <script>
+        document.getElementsByClassName("recordtime")[0].addEventListener('click', function(e) {
+           var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    var daily_times = JSON.parse(xhr.responseText);
+                    var times = daily_times.dailyTimes;
+                    for (var i = 0; i < times.length; i++) {
+                        $('#inner').append('<p>'+ times[i] +'</p>');
+                    }
+                }
+            };
+            xhr.open('POST', '{% url 'record_time' %}', true);
+
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.setRequestHeader("X-CSRFToken","{{csrf_token}}");
+
+            xhr.send('hello=123');
+        });
+
+        $('#changecolor').click(function () {
+{#            $(this).css("background-color","red");#}
+{#            $(this).text("Your time has been recorded");#}
+            alert('Your time has been recorded!');
+        })
+    </script>
 {% endblock %}
+

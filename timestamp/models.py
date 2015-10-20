@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
-
+from django import utils
 
 def image_upload_handler(instance, filename):
     return 'profileimg/%s/%s' % (instance.user.id, filename)
@@ -18,12 +17,12 @@ class MakeUser(models.Model):
 
 
 class RecordTime(models.Model):
-    user = models.ForeignKey(User, null=False, blank=False, default='31')
+    user = models.ForeignKey(User, null=False, blank=False, default='0')
     TIMESTAMP_TYPE_CHOICES = (
         ('I', 'IN'),
         ('O', 'OUT'),
     )
-    tstamp = models.DateTimeField(default=datetime.now(),
+    tstamp = models.DateTimeField(default=utils.timezone.now,
                                   blank=True
                                   )
     type = models.CharField(

@@ -2,23 +2,19 @@ from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from .models import MakeUser
+from django.http import JsonResponse
+from datetime import date
 
-from .forms import UserForm, RecordTimeForm
+from .models import MakeUser, RecordTime
 
-
-@login_required
-def home(request):
-    return render(
-        request,
-        'home.html',
-    )
+from .forms import UserForm
 
 
 @login_required
 def user_profile(request, user_id):
     user = get_object_or_404(User, id=user_id)
     profileimg = MakeUser.objects.get(user_id=user_id)
+
     return render(
         request,
         'user_profile.html',
@@ -53,24 +49,48 @@ def create_user(request):
 
 @login_required
 def record_time(request):
-    print 'start'
     if request.method == 'POST':
-        print 'validate', request.user.id
-        form = RecordTimeForm(request.POST, profile_id=request.user)
-        if form.is_valid():
-            print form
-            form.save()
-            return HttpResponseRedirect(reverse(
-                'record_time'
-            ))
+        # Record the time & figure out the status (in/out)
+        # Add a new record to the RecordTime model
+        # Return all the timestamps for the current day
+        # return a JsonResponse
+
+        timerecords = RecordTime.objects.filter(user=request.user).order_by('-tstamp')
+        # Returns the current User's time stamps and sorts them in decreasing order
+
+        if timerecords:     # if user has data recorded, then proceed
+            dailyrecords = timerecords.exclude(tstamp__lt=date.today())
+            # Returns current days time stamps, excludes any prior day's records
+
+            stamplist = []
+            for stamps in dailyrecords:
+                stamplist.append(stamps.tstamp.strftime("%H:%M %x"))
+            #     Iterates through the daily entries of that User on the current day
+
+            timerecord = timerecords[0]
+            # Grab the last made entry by the first position
+
+            if timerecord.type == 'O':  # if the type is 'O' then the next type will be 'I'
+                nexttype = 'I'
+
+            elif timerecord.type == 'I':    # Look at the type of stamp is
+                nexttype = 'O'              # if the type is 'O' then the next type will be 'I'
+
+            newrecord = RecordTime(user=request.user, type=nexttype)
+            newrecord.save()
+        else:
+            # if the user has no data, save user as clocked in
+            newrecord = RecordTime(user=request.user, type='I')
+            newrecord.save()
+
+        return JsonResponse(
+
+            {'result': True,
+             'dailyTimes': stamplist}
+        )
 
     else:
-        form = RecordTimeForm()
-
-    return render(
-        request,
-        'record_time.html',
-        context={
-            'form': form,
-        }
-    )
+        return render(
+            request,
+            'record_time.html'
+        )

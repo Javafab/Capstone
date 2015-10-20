@@ -23,12 +23,11 @@ from timestamp import views as timestamp_views
 urlpatterns = [
     url('^', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^logged_out/$', auth_views.logout, name='logout'),
     url(r'^timestamp/', include([
-        url(r'^(?P<user_id>\d+)/$', timestamp_views.user_profile, name='user_profile'),
+        url(r'^user_profile/(?P<user_id>\d+)/$', timestamp_views.user_profile, name='user_profile'),
         url(r'^create/$', timestamp_views.create_user, name='create_user'),
-        url(r'^home/$', timestamp_views.home, name='home'),
         url(r'^record_time/$', timestamp_views.record_time, name='record_time'),
     ])),
 

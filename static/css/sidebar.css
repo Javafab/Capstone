@@ -14,7 +14,7 @@
     left: 70px;
     width: 150px;
     background: #222;
-    position: fixed;
+    position: absolute;
     height: 100%;
     z-index: 10000;
     transition: all .4s ease 0s;
